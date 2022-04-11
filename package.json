@@ -1,0 +1,17 @@
+{
+  "name": "pseudo-mask",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.mjs",
+  "module": "index.mjs",
+  "scripts": {
+    "dev": "wds --watch --open --app-index index.html"
+  },
+  "dependencies": {
+    "svg-text": "npm:@ponomarevlad/svg-text@latest"
+  },
+  "devDependencies": {
+    "@web/dev-server": "latest"
+  }
+}

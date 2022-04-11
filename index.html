@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pseudo-mask Demo</title>
+    <style>
+        * {
+            box-sizing: content-box;
+        }
+
+        :root {
+            background-color: black;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            width: 100%;
+            margin: unset;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            margin: 0;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        aside {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            display: flex;
+            position: fixed;
+            align-items: center;
+            pointer-events: none;
+            flex-direction: column;
+            justify-content: center;
+            height: -moz-available;
+            height: -webkit-fill-available;
+            height: fill-available;
+        }
+
+        section {
+            --filter: blur(30px);
+            --mask: unset;
+            max-width: 40vw;
+            padding: 5vw;
+            color: white;
+            border-radius: 5vw;
+            position: relative;
+            pointer-events: initial;
+        }
+
+        section:before {
+            content: '';
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            position: absolute;
+            pointer-events: none;
+            border-radius: inherit;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: var(--filter);
+            -webkit-backdrop-filter: var(--filter);
+        }
+
+        section h1 {
+            font-size: 4vw;
+            font-weight: 700;
+            margin: unset;
+            line-height: 1.3;
+        }
+
+        section p {
+            line-height: 1.3;
+        }
+
+        pseudo-mask {
+            --filter: blur(50px) saturate(3) brightness(2);
+        }
+
+        @media (orientation: portrait) {
+            section {
+                padding: 10vw;
+                max-width: 60vw;
+                border-radius: 10vw;
+            }
+
+            section h1 {
+                font-size: 6vw;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                min-height: 100vh;
+                object-fit: cover;
+                min-height: -moz-available;
+                min-height: -webkit-fill-available;
+                min-height: fill-available;
+            }
+        }
+    </style>
+    <script type="importmap">{"imports": {"svg-text": "https://cdn.skypack.dev/@ponomarevlad/svg-text"}}</script>
+    <script async noshim src="https://unpkg.com/es-module-shims/dist/es-module-shims.js"></script>
+    <script src="./index.mjs" type="module"></script>
+</head>
+<body>
+<img decoding="async" height="2048" src="https://picsum.photos/2048?1" width="2048">
+<img decoding="async" height="2048" src="https://picsum.photos/2048?2" width="2048">
+<img decoding="async" height="2048" src="https://picsum.photos/2048?3" width="2048">
+<img decoding="async" height="2048" src="https://picsum.photos/2048?4" width="2048">
+<img decoding="async" height="2048" src="https://picsum.photos/2048?5" width="2048">
+<aside>
+    <section>
+        <a href="https://www.npmjs.com/package/pseudo-mask">
+            <h1>
+                <pseudo-mask>&#60; pseudo-mask /&#62;</pseudo-mask>
+            </h1>
+        </a>
+        <p>
+            <pseudo-mask>A tiny custom element that generates SVG masks from text content ✨</pseudo-mask>
+        </p>
+    </section>
+</aside>
+</body>
+</html>
