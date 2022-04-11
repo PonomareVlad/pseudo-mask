@@ -1,4 +1,4 @@
-import SvgText from 'svg-text';
+import SvgText from '@ponomarevlad/svg-text';
 
 export default class PseudoMask extends HTMLElement {
     static get styles() {

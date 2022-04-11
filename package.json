@@ -1,6 +1,7 @@
 {
   "name": "pseudo-mask",
-  "version": "0.0.1",
+  "description": "A tiny custom element that generates SVG masks from text content",
+  "version": "0.0.2",
   "license": "MIT",
   "type": "module",
   "main": "index.mjs",
@@ -9,7 +10,7 @@
     "dev": "wds --watch --open --app-index index.html"
   },
   "dependencies": {
-    "svg-text": "npm:@ponomarevlad/svg-text@latest"
+    "@ponomarevlad/svg-text": "latest"
   },
   "devDependencies": {
     "@web/dev-server": "latest"
