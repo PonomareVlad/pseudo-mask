@@ -1,7 +1,7 @@
 {
   "name": "pseudo-mask",
   "description": "A tiny custom element that generates SVG masks from text content",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "type": "module",
   "main": "index.mjs",
@@ -14,5 +14,21 @@
   },
   "devDependencies": {
     "@web/dev-server": "latest"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PonomareVlad/pseudo-mask.git"
+  },
+  "keywords": [
+    "svg",
+    "css",
+    "mask",
+    "text",
+    "custom-element"
+  ],
+  "author": "PonomareVlad",
+  "bugs": {
+    "url": "https://github.com/PonomareVlad/pseudo-mask/issues"
+  },
+  "homepage": "https://github.com/PonomareVlad/pseudo-mask#readme"
 }
