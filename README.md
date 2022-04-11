@@ -1,5 +1,7 @@
 # Pseudo-mask
 
+[Live demo](https://pseudo-mask.ponomarevlad.ru)
+
 ### Load module
 
 ```html
@@ -41,13 +43,23 @@
 
 ```html
 <style>
+    div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background-size: cover;
+        justify-content: center;
+        background-image: url("https://picsum.photos/1024");
+    }
+
     h1 {
         font-size: 100px;
         font-family: Helvetica, sans-serif;
         --filter: blur(5px) saturate(2) brightness(1);
     }
 </style>
-<div style='background-image: url("https://picsum.photos/1024")'>
+<div>
     <h1>
         <pseudo-mask>Header</pseudo-mask>
     </h1>
