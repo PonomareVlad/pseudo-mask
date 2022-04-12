@@ -47,9 +47,7 @@ A tiny custom element that generates SVG masks from text content ✨
 
 ```html
 <style>
-    div {
-        width: 100%;
-        height: 100%;
+    body {
         display: flex;
         align-items: center;
         background-size: cover;
@@ -58,14 +56,13 @@ A tiny custom element that generates SVG masks from text content ✨
     }
 
     h1 {
-        font-size: 100px;
+        font-size: 120px;
+        line-height: 1.3em;
         font-family: Helvetica, sans-serif;
-        --filter: blur(5px) saturate(2) brightness(1);
+        --filter: blur(15px) saturate(2) brightness(.8);
     }
 </style>
-<div>
-    <h1>
-        <pseudo-mask>Header</pseudo-mask>
-    </h1>
-</div>
+<h1>
+    <pseudo-mask>Glassy</pseudo-mask>
+</h1>
 ```
