@@ -1,7 +1,7 @@
 {
   "name": "pseudo-mask",
   "description": "A tiny custom element that generates SVG masks from text content",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "type": "module",
   "main": "index.mjs",
