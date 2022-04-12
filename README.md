@@ -1,6 +1,10 @@
-# Pseudo-mask
+# &#60; pseudo-mask /&#62;
+
+A tiny custom element that generates SVG masks from text content ✨
 
 [Live demo](https://pseudo-mask.ponomarevlad.ru)
+
+![Снимок экрана 2022-04-12 в 17 09 16](https://user-images.githubusercontent.com/2877584/162960697-f3bacd3e-de4a-47f6-9b69-c82a2184bc4d.png)
 
 ### Load module
 
