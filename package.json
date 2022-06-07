@@ -10,10 +10,10 @@
     "dev": "wds --watch --open --app-index index.html"
   },
   "dependencies": {
-    "@ponomarevlad/svg-text": "latest"
+    "@ponomarevlad/svg-text": "^0.6.2"
   },
   "devDependencies": {
-    "@web/dev-server": "latest"
+    "@web/dev-server": "^0.1.31"
   },
   "repository": {
     "type": "git",
