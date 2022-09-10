@@ -24,6 +24,29 @@ export default class PseudoMask extends HTMLElement {
         this.render();
     }
 
+    getTextAlign(targetStyles) {
+        const align = targetStyles.getPropertyValue('text-align')
+        switch (align) {
+            case 'start':
+                return 'left'
+            case 'end':
+                return 'right'
+            default:
+                return align
+        }
+    }
+
+    getXByAlign(align, width) {
+        switch (align) {
+            case 'right':
+                return width;
+            case 'center':
+                return width / 2;
+            default:
+                return 0
+        }
+    }
+
     render() {
         const text = this.constructor.encodeHTMLEntities(this.innerText),
             element = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
@@ -33,19 +56,15 @@ export default class PseudoMask extends HTMLElement {
         element.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         element.append(styleElement);
         this.append(element);
-        const options = {
-            text,
-            element,
-            styleElement,
-            width: this.clientWidth + 1,
-            height: this.clientHeight,
-            style: {
-                fontSize: targetStyles.getPropertyValue('font-size'),
-                fontFamily: targetStyles.getPropertyValue('font-family'),
-                fontWeight: targetStyles.getPropertyValue('font-weight'),
-                lineHeight: targetStyles.getPropertyValue('line-height')
+        const height = this.clientHeight, width = this.clientWidth + 1, align = this.getTextAlign(targetStyles),
+            options = {
+                text, align, width, height, element, styleElement, x: this.getXByAlign(align, width), style: {
+                    fontSize: targetStyles.getPropertyValue('font-size'),
+                    fontFamily: targetStyles.getPropertyValue('font-family'),
+                    fontWeight: targetStyles.getPropertyValue('font-weight'),
+                    lineHeight: targetStyles.getPropertyValue('line-height')
+                }
             }
-        }
         this.svgText = new SvgText(options);
         this.removeChild(element);
         this.shadowRoot.querySelector('.mask').style.setProperty('--mask',
