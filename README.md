@@ -66,3 +66,86 @@ A tiny custom element that generates SVG masks from text content ✨
     <pseudo-mask>Glassy</pseudo-mask>
 </h1>
 ```
+
+### Customization API
+
+The mask can be customized using CSS variables or JavaScript:
+
+#### CSS Custom Properties
+
+Text and mask appearance:
+
+```css
+pseudo-mask {
+    /* Filter effect (blur, saturation, etc.) */
+    --filter: blur(15px) saturate(2);
+    
+    /* Mask color and opacity */
+    --mask-color: rgba(255, 255, 255, 0.3);
+    --mask-opacity: 0.8;
+    
+    /* Mask positioning and sizing */
+    --mask-position: center;
+    --mask-size: cover;
+    --mask-repeat: no-repeat;
+}
+```
+
+Block model styles:
+
+```css
+pseudo-mask {
+    /* Custom padding for the mask */
+    --mask-padding: 10px;
+    
+    /* Custom margin for the mask */
+    --mask-margin: 5px;
+    
+    /* Custom border for the mask */
+    --mask-border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    /* Custom border radius */
+    --mask-border-radius: 8px;
+}
+```
+
+#### Inheritance Control
+
+Enable inheritance of styles from parent element:
+
+```css
+pseudo-mask {
+    /* Enable inheritance of padding from parent */
+    --mask-padding-inherit: true;
+    
+    /* Enable inheritance of margin from parent */
+    --mask-margin-inherit: true;
+    
+    /* Enable inheritance of border from parent */
+    --mask-border-inherit: true;
+    
+    /* Enable inheritance of border-radius from parent */
+    --mask-border-radius-inherit: true;
+}
+```
+
+#### JavaScript API
+
+Set mask styles programmatically:
+
+```javascript
+// Get reference to the element
+const mask = document.querySelector('pseudo-mask');
+
+// Set custom styles
+mask.setMaskStyles({
+    color: 'rgba(255, 255, 255, 0.5)',
+    opacity: 0.9,
+    padding: '10px',
+    borderRadius: '5px'
+});
+
+// Get current styles
+const styles = mask.getMaskStyles();
+console.log(styles);
+```
