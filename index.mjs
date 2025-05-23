@@ -21,7 +21,58 @@ export default class PseudoMask extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: "open", delegatesFocus: true}).innerHTML =
             `${this.constructor.styles}<span class="mask"><slot></slot></span>`;
+        this.setupObservers();
         this.render();
+    }
+
+    setupObservers() {
+        // Initialize ResizeObserver if supported
+        if (typeof ResizeObserver !== 'undefined') {
+            this.resizeObserver = new ResizeObserver(() => this.debouncedRender());
+            this.resizeObserver.observe(this);
+        } else {
+            console.warn('ResizeObserver is not supported in this environment.');
+        }
+
+        // Initialize MutationObserver if supported
+        if (typeof MutationObserver !== 'undefined') {
+            this.mutationObserver = new MutationObserver(() => this.render());
+            const firstAssignedNode = this.shadowRoot.querySelector('slot').assignedNodes({ flatten: true })[0];
+            if (firstAssignedNode) {
+                this.mutationObserver.observe(firstAssignedNode, {
+                    childList: true,
+                    characterData: true,
+                    subtree: true
+                });
+            }
+        } else {
+            console.warn('MutationObserver is not supported in this environment.');
+        }
+    }
+
+    disconnectedCallback() {
+        // Clean up observers
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+        }
+
+        if (this.mutationObserver) {
+            this.mutationObserver.disconnect();
+        }
+        
+        // Clear any pending debounced renders
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
+    }
+    
+    debouncedRender() {
+        // Clear existing timeout to prevent multiple renders
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
+        // Set new timeout to delay render until resizing stops
+        this.debounceTimer = setTimeout(() => this.render(), 150);
     }
 
     getTextAlign(targetStyles) {
