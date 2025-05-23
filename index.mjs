@@ -59,6 +59,20 @@ export default class PseudoMask extends HTMLElement {
         if (this.mutationObserver) {
             this.mutationObserver.disconnect();
         }
+        
+        // Clear any pending debounced renders
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
+    }
+    
+    debouncedRender() {
+        // Clear existing timeout to prevent multiple renders
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
+        // Set new timeout to delay render until resizing stops
+        this.debounceTimer = setTimeout(() => this.render(), 150);
     }
 
     getTextAlign(targetStyles) {
