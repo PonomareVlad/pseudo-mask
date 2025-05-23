@@ -7,10 +7,11 @@ export default class PseudoMask extends HTMLElement {
                     :host {--mask: none;outline: none;display: inherit;line-height: inherit;color: rgba(256, 256, 256, 0);}
                     .mask {position: relative;display: inherit;line-height: inherit;} 
                     .mask:before {
-                    content: '';top: 0;left: 0;right: 0;bottom: 0;
+                    content: '';top: 0;left: 0;right: 0;bottom: 0;z-index: 1;
                     position: absolute;pointer-events: none;-webkit-mask-image: var(--mask);
                     -webkit-mask-repeat: no-repeat;backdrop-filter: var(--filter);
                     -webkit-backdrop-filter: var(--filter);background-color: rgba(256, 256, 256, 0.2);}
+                    ::slotted(*) {position: relative;z-index: 0;}
                 </style>`
     }
 
