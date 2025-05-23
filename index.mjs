@@ -26,17 +26,25 @@ export default class PseudoMask extends HTMLElement {
     }
     
     setupObservers() {
-        // Initialize ResizeObserver
-        this.resizeObserver = new ResizeObserver(() => this.render());
-        this.resizeObserver.observe(this);
+        // Initialize ResizeObserver if supported
+        if (typeof ResizeObserver !== 'undefined') {
+            this.resizeObserver = new ResizeObserver(() => this.render());
+            this.resizeObserver.observe(this);
+        } else {
+            console.warn('ResizeObserver is not supported in this environment.');
+        }
         
-        // Initialize MutationObserver
-        this.mutationObserver = new MutationObserver(() => this.render());
-        this.mutationObserver.observe(this, { 
-            childList: true, 
-            characterData: true, 
-            subtree: true 
-        });
+        // Initialize MutationObserver if supported
+        if (typeof MutationObserver !== 'undefined') {
+            this.mutationObserver = new MutationObserver(() => this.render());
+            this.mutationObserver.observe(this, { 
+                childList: true, 
+                characterData: true, 
+                subtree: true 
+            });
+        } else {
+            console.warn('MutationObserver is not supported in this environment.');
+        }
     }
     
     disconnectedCallback() {
