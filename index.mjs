@@ -37,11 +37,14 @@ export default class PseudoMask extends HTMLElement {
         // Initialize MutationObserver if supported
         if (typeof MutationObserver !== 'undefined') {
             this.mutationObserver = new MutationObserver(() => this.render());
-            this.mutationObserver.observe(this.shadowRoot.querySelector('slot').assignedNodes({ flatten: true }).at(0), {
-                childList: true,
-                characterData: true,
-                subtree: true
-            });
+            const firstAssignedNode = this.shadowRoot.querySelector('slot').assignedNodes({ flatten: true })[0];
+            if (firstAssignedNode) {
+                this.mutationObserver.observe(firstAssignedNode, {
+                    childList: true,
+                    characterData: true,
+                    subtree: true
+                });
+            }
         } else {
             console.warn('MutationObserver is not supported in this environment.');
         }
