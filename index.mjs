@@ -59,8 +59,10 @@ export default class PseudoMask extends HTMLElement {
         element.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         element.append(styleElement);
         this.append(element);
-        const height = this.clientHeight, width = this.clientWidth + 1, align = this.getTextAlign(targetStyles),
-            options = {
+        const height = this.clientHeight;
+        const width = this.clientWidth + 1;
+        const align = this.getTextAlign(targetStyles);
+        const options = {
                 text, align, width, height, element, styleElement, x: this.getXByAlign(align, width), style: {
                     fontSize: targetStyles.getPropertyValue('font-size'),
                     fontFamily: targetStyles.getPropertyValue('font-family'),
