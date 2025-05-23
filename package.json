@@ -7,13 +7,15 @@
   "main": "index.mjs",
   "module": "index.mjs",
   "scripts": {
-    "dev": "wds --watch --open --app-index index.html"
+    "dev": "wds --watch --open --app-index index.html",
+    "test": "node --test tests/"
   },
   "dependencies": {
     "@ponomarevlad/svg-text": "^0.6.2"
   },
   "devDependencies": {
-    "@web/dev-server": "^0.2.3"
+    "@web/dev-server": "^0.2.3",
+    "jsdom": "^26.1.0"
   },
   "repository": {
     "type": "git",
