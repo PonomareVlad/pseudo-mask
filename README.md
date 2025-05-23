@@ -32,39 +32,62 @@ A tiny custom element that generates SVG masks from text content ✨
 </h1>
 ```
 
-### Styling Demo
+### Advanced Styling Examples
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="https://cdn.skypack.dev/pseudo-mask" type="module" async></script>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+Use different mask styles for creative effects:
 
 ```html
 <style>
-    body {
-        display: flex;
-        align-items: center;
-        background-size: cover;
-        justify-content: center;
-        background-image: url("https://picsum.photos/1024");
+    /* Base styling for all masks */
+    pseudo-mask {
+        --filter: blur(10px) saturate(1.5);
+        --mask-color: rgba(255, 255, 255, 0.3);
     }
-
-    h1 {
-        font-size: 120px;
-        line-height: 1.3em;
-        font-family: Helvetica, sans-serif;
-        --filter: blur(15px) saturate(2) brightness(.8);
+    
+    /* Glossy effect with rounded corners */
+    .glossy {
+        --filter: blur(15px) saturate(2.5) brightness(1.2);
+        --mask-color: rgba(255, 255, 255, 0.4);
+        --mask-border-radius: 10px;
+        --mask-padding: 15px;
+    }
+    
+    /* Frosted glass effect */
+    .frosted {
+        --filter: blur(20px) contrast(1.2) brightness(1.1);
+        --mask-color: rgba(230, 230, 250, 0.3);
+        --mask-border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Inherit text styles from parent */
+    .inherit-text {
+        --mask-color: rgba(255, 255, 255, 0.3);
+        /* The component will automatically inherit font properties */
+    }
+    
+    /* Inherit block model styles from parent */
+    .inherit-block {
+        --mask-padding-inherit: true;
+        --mask-margin-inherit: true;
+        --mask-border-radius-inherit: true;
     }
 </style>
+
 <h1>
-    <pseudo-mask>Glassy</pseudo-mask>
+    <pseudo-mask class="glossy">Glossy Effect</pseudo-mask>
 </h1>
+
+<div class="card">
+    <pseudo-mask class="frosted">Frosted Glass</pseudo-mask>
+</div>
+
+<h2 style="font-family: Georgia; color: purple;">
+    <pseudo-mask class="inherit-text">Inherits Text Styles</pseudo-mask>
+</h2>
+
+<div style="padding: 20px; border-radius: 15px;">
+    <pseudo-mask class="inherit-block">Inherits Block Model</pseudo-mask>
+</div>
 ```
 
 ### Customization API

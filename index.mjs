@@ -68,6 +68,34 @@ export default class PseudoMask extends HTMLElement {
         this.attachShadow({mode: "open", delegatesFocus: true}).innerHTML =
             `${this.constructor.styles}<span class="mask"><slot></slot></span>`;
         this.render();
+        
+        // Set up mutation observer to re-render when text content changes
+        this._observer = new MutationObserver(() => this.render());
+        this._observer.observe(this, {
+            childList: true,
+            characterData: true,
+            subtree: true
+        });
+        
+        // Observe changes to element attributes
+        this._attributeObserver = new MutationObserver(() => this.render());
+        this._attributeObserver.observe(this, {
+            attributes: true,
+            attributeFilter: ['style', 'class']
+        });
+    }
+    
+    disconnectedCallback() {
+        // Clean up mutation observers
+        if (this._observer) {
+            this._observer.disconnect();
+            this._observer = null;
+        }
+        
+        if (this._attributeObserver) {
+            this._attributeObserver.disconnect();
+            this._attributeObserver = null;
+        }
     }
 
     getTextAlign(targetStyles) {
