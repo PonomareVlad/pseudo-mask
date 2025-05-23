@@ -24,7 +24,7 @@ export default class PseudoMask extends HTMLElement {
                         left: 0;
                         right: 0;
                         bottom: 0;
-                        z-index: 1;
+                        z-index: -1;
                         position: absolute;
                         pointer-events: none;
                         -webkit-mask-image: var(--mask);
@@ -32,10 +32,6 @@ export default class PseudoMask extends HTMLElement {
                         backdrop-filter: var(--filter);
                         -webkit-backdrop-filter: var(--filter);
                         background-color: rgba(256, 256, 256, 0.2);
-                    }
-                    ::slotted(*) {
-                        position: relative;
-                        z-index: 0;
                     }
                 </style>`
     }
