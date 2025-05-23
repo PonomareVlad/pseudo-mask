@@ -32,37 +32,143 @@ A tiny custom element that generates SVG masks from text content ✨
 </h1>
 ```
 
-### Styling Demo
+### Advanced Styling Examples
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="https://cdn.skypack.dev/pseudo-mask" type="module" async></script>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+Use different mask styles for creative effects:
 
 ```html
 <style>
-    body {
-        display: flex;
-        align-items: center;
-        background-size: cover;
-        justify-content: center;
-        background-image: url("https://picsum.photos/1024");
+    /* Base styling for all masks */
+    pseudo-mask {
+        --filter: blur(10px) saturate(1.5);
+        --mask-color: rgba(255, 255, 255, 0.3);
     }
-
-    h1 {
-        font-size: 120px;
-        line-height: 1.3em;
-        font-family: Helvetica, sans-serif;
-        --filter: blur(15px) saturate(2) brightness(.8);
+    
+    /* Glossy effect with rounded corners */
+    .glossy {
+        --filter: blur(15px) saturate(2.5) brightness(1.2);
+        --mask-color: rgba(255, 255, 255, 0.4);
+        --mask-border-radius: 10px;
+        --mask-padding: 15px;
+    }
+    
+    /* Frosted glass effect */
+    .frosted {
+        --filter: blur(20px) contrast(1.2) brightness(1.1);
+        --mask-color: rgba(230, 230, 250, 0.3);
+        --mask-border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Inherit text styles from parent */
+    .inherit-text {
+        --mask-color: rgba(255, 255, 255, 0.3);
+        /* The component will automatically inherit font properties */
+    }
+    
+    /* Inherit block model styles from parent */
+    .inherit-block {
+        --mask-padding-inherit: true;
+        --mask-margin-inherit: true;
+        --mask-border-radius-inherit: true;
     }
 </style>
+
 <h1>
-    <pseudo-mask>Glassy</pseudo-mask>
+    <pseudo-mask class="glossy">Glossy Effect</pseudo-mask>
 </h1>
+
+<div class="card">
+    <pseudo-mask class="frosted">Frosted Glass</pseudo-mask>
+</div>
+
+<h2 style="font-family: Georgia; color: purple;">
+    <pseudo-mask class="inherit-text">Inherits Text Styles</pseudo-mask>
+</h2>
+
+<div style="padding: 20px; border-radius: 15px;">
+    <pseudo-mask class="inherit-block">Inherits Block Model</pseudo-mask>
+</div>
+```
+
+### Customization API
+
+The mask can be customized using CSS variables or JavaScript:
+
+#### CSS Custom Properties
+
+Text and mask appearance:
+
+```css
+pseudo-mask {
+    /* Filter effect (blur, saturation, etc.) */
+    --filter: blur(15px) saturate(2);
+    
+    /* Mask color and opacity */
+    --mask-color: rgba(255, 255, 255, 0.3);
+    --mask-opacity: 0.8;
+    
+    /* Mask positioning and sizing */
+    --mask-position: center;
+    --mask-size: cover;
+    --mask-repeat: no-repeat;
+}
+```
+
+Block model styles:
+
+```css
+pseudo-mask {
+    /* Custom padding for the mask */
+    --mask-padding: 10px;
+    
+    /* Custom margin for the mask */
+    --mask-margin: 5px;
+    
+    /* Custom border for the mask */
+    --mask-border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    /* Custom border radius */
+    --mask-border-radius: 8px;
+}
+```
+
+#### Inheritance Control
+
+Enable inheritance of styles from parent element:
+
+```css
+pseudo-mask {
+    /* Enable inheritance of padding from parent */
+    --mask-padding-inherit: true;
+    
+    /* Enable inheritance of margin from parent */
+    --mask-margin-inherit: true;
+    
+    /* Enable inheritance of border from parent */
+    --mask-border-inherit: true;
+    
+    /* Enable inheritance of border-radius from parent */
+    --mask-border-radius-inherit: true;
+}
+```
+
+#### JavaScript API
+
+Set mask styles programmatically:
+
+```javascript
+// Get reference to the element
+const mask = document.querySelector('pseudo-mask');
+
+// Set custom styles
+mask.setMaskStyles({
+    color: 'rgba(255, 255, 255, 0.5)',
+    opacity: 0.9,
+    padding: '10px',
+    borderRadius: '5px'
+});
+
+// Get current styles
+const styles = mask.getMaskStyles();
+console.log(styles);
 ```
