@@ -48,7 +48,10 @@ export default class PseudoMask extends HTMLElement {
     }
 
     render() {
-        const text = this.constructor.encodeHTMLEntities(this.innerText),
+        // Preserve empty lines by replacing them with a non-breaking space
+        const rawText = this.innerText;
+        const processedText = rawText.split('\n').map(line => line.trim() === '' ? '\u00A0' : line).join('\n');
+        const text = this.constructor.encodeHTMLEntities(processedText),
             element = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
             styleElement = document.createElement("style"),
             targetStyles = window.getComputedStyle(this);
