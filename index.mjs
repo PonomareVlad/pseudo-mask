@@ -28,7 +28,7 @@ export default class PseudoMask extends HTMLElement {
     setupObservers() {
         // Initialize ResizeObserver if supported
         if (typeof ResizeObserver !== 'undefined') {
-            this.resizeObserver = new ResizeObserver(() => this.render());
+            this.resizeObserver = new ResizeObserver(() => this.debouncedRender());
             this.resizeObserver.observe(this);
         } else {
             console.warn('ResizeObserver is not supported in this environment.');
