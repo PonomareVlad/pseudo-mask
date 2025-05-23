@@ -24,7 +24,7 @@ export default class PseudoMask extends HTMLElement {
         this.setupObservers();
         this.render();
     }
-    
+
     setupObservers() {
         // Initialize ResizeObserver if supported
         if (typeof ResizeObserver !== 'undefined') {
@@ -33,26 +33,26 @@ export default class PseudoMask extends HTMLElement {
         } else {
             console.warn('ResizeObserver is not supported in this environment.');
         }
-        
+
         // Initialize MutationObserver if supported
         if (typeof MutationObserver !== 'undefined') {
             this.mutationObserver = new MutationObserver(() => this.render());
-            this.mutationObserver.observe(this, { 
-                childList: true, 
-                characterData: true, 
-                subtree: true 
+            this.mutationObserver.observe(this.shadowRoot.querySelector('slot').assignedNodes({ flatten: true }).at(0), {
+                childList: true,
+                characterData: true,
+                subtree: true
             });
         } else {
             console.warn('MutationObserver is not supported in this environment.');
         }
     }
-    
+
     disconnectedCallback() {
         // Clean up observers
         if (this.resizeObserver) {
             this.resizeObserver.disconnect();
         }
-        
+
         if (this.mutationObserver) {
             this.mutationObserver.disconnect();
         }
